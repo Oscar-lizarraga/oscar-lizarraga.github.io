@@ -13,7 +13,7 @@
 ---
 
 
-### Statistics with Ti-89 Titanium
+### Numeric Methods with Ti-89 Titanium
 
 - [Project 1 Title](http://example.com/)
 - [Project 2 Title](http://example.com/)
