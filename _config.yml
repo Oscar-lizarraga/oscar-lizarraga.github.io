@@ -1,0 +1,16 @@
+title: Oscar Lizarraga # your name (or website title) here
+logo: "/images/Foto.JPG?raw=true" # your photo (or logo) here
+description: > # your text below (remove <br> elements if you don't need line breaks)
+  Developer .NET freelancer with 4 years of experience, 
+  specialized in providing automation solutions and data management 
+  for custom systems to small businesses. My focus is on optimizing 
+  processes to reduce operational times, minimize costs, and increase 
+  efficiency.
+  <br><br>
+  <br><br>
+  <a href="https://www.linkedin.com/in/oscar-lizarraga-pelayo-8051a1215/">View My LinkedIn Profile</a> 
+  
+remote_theme: pages-themes/minimal@v0.2.0
+plugins:
+- jekyll-remote-theme
+google_analytics: UA-000000-0 # your Google Analytics tracking ID here
