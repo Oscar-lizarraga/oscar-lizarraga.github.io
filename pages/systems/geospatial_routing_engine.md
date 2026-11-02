@@ -103,7 +103,7 @@ title: "Self-Hosted Geospatial Vector Tile Server, OSRM Routing & VRP Fleet Opti
 
 High-volume last-mile logistics platforms execute tens of thousands of map tile renders, distance matrix calculations, and multi-stop route optimizations every day. Relying on commercial cloud APIs (such as Google Maps Platform or Mapbox) at scale introduces prohibitive per-request billing, strict rate limits, and external network dependencies.
 
-To achieve **100% operational autonomy with $0/month in third-party API fees**, I engineered **`siap-map-server` (`maps.trapoist.mx` / `192.168.1.85`)**: a self-hosted, air-gapped geospatial and route optimization infrastructure running on Docker. The platform integrates four specialized engines behind a hardened **Nginx HTTP/2 reverse proxy**:
+To achieve **100% operational autonomy with $0/month in third-party API fees**, I engineered **`siap-map-server`**: a self-hosted, air-gapped geospatial and route optimization infrastructure running on Docker. The platform integrates four specialized engines behind a hardened **Nginx HTTP/2 reverse proxy**:
 1. **TileServer GL** serving compressed **Protocol Buffer Vector Tiles (`.pbf`)** for 60 FPS GPU client rendering alongside `@2x` Retina raster PNG fallbacks across the entire Mexican Republic (`mexico.mbtiles`).
 2. **OSRM (Open Source Routing Machine)** computing sub-millisecond street-level trajectories and $N \times M$ travel-time/distance matrices over Mexico's road network.
 3. **VROOM** solving multi-vehicle **Capacitated Vehicle Routing Problems with Time Windows (CVRPTW)**, vehicle skills, driver meal breaks, and 8-hour highway overnight stays (*pernoctas*) for up to **200 vehicles and 1,000 stops per batch**.
@@ -117,7 +117,7 @@ The infrastructure decouples heavy cartographic and combinatorial optimization w
 ```mermaid
 graph TB
     subgraph CLIENTS ["1. Client Applications & Map Viewers"]
-        WebGLMap["SIAP Dispatch Portal (visor.trapoist.mx)<br/><i>Leaflet + MapLibre GL JS (60 FPS WebGL GPU)</i>"]
+        WebGLMap["SIAP Dispatch Portal<br/><i>Leaflet + MapLibre GL JS (60 FPS WebGL GPU)</i>"]
         RasterFallback["Legacy & Mobile Map Clients<br/><i>Standard L.tileLayer ({z}/{x}/{y}@2x.png)</i>"]
         DiagnosticSPA["Built-In Diagnostic SPA (/demo/index.html)<br/><i>Coordinate HUD, Layer Switcher & z/x/y.pbf Tile Inspector</i>"]
         BackendWorkers["SIAP Backend & Route Planners (Python / .NET)<br/><i>Fleet Optimization & ETA Consumers</i>"]
@@ -128,7 +128,7 @@ graph TB
     end
 
     subgraph ENGINES ["3. Cartography, Routing & Operations Research Engines"]
-        TileServer["map-tileserver (TileServer GL)<br/><b>Port 8080</b><br/>• Vector Tiles: /data/v3/{z}/{x}/{y}.pbf<br/>• Style JSON: /styles/positron-trapoist/style.json<br/>• Raster PNG & @2x Retina Renderer<br/>• PBF Font Glyphs (Noto Sans) & Sprites"]
+        TileServer["map-tileserver (TileServer GL)<br/><b>Port 8080</b><br/>• Vector Tiles: /data/v3/{z}/{x}/{y}.pbf<br/>• Style JSON: /styles/positron-custom/style.json<br/>• Raster PNG & @2x Retina Renderer<br/>• PBF Font Glyphs (Noto Sans) & Sprites"]
         
         OSRMEngine["OSRM Routing Engine (C++)<br/><b>Port 5000 (car profile)</b><br/>• Point-to-Point: /route/v1/driving/ (GeoJSON LineString)<br/>• NxM Distance/Duration Matrix: /table/v1/driving/"]
         
@@ -163,8 +163,8 @@ graph TB
 ### A. Vector Tile Cartography & Dual WebGL / Raster Rendering (`TileServer GL`)
 Traditional raster map servers transmit heavy PNG images for every zoom level and pan action. `siap-map-server` reverses this paradigm by serving **OpenMapTiles v3.14 (`mexico.mbtiles`)** via **TileServer GL**:
 * **Vector Tiles (`/data/v3/{z}/{x}/{y}.pbf`):** Delivers compact binary Protocol Buffer tiles compressed on the fly by Nginx (`gzip_comp_level 6` on `application/x-protobuf` and `application/vnd.mapbox-vector-tile`). The client browser's GPU renders streets, labels, and 3D building footprints at **60 FPS** using **MapLibre GL JS** (`@maplibre/maplibre-gl-leaflet`), reducing map bandwidth consumption and HTTP tile count by **over 80%**.
-* **CARTO Positron Visual Style & Retina Fallback:** Serves the high-contrast `positron-trapoist` style (`#fafaf8` bone background, crisp `#dddddd` street casings) so colored fleet polylines stand out clearly. For legacy devices without WebGL, TileServer GL dynamically renders `512px` standard and `@2x` Retina PNG tiles (`maxScaleFactor: 2`, `png: 90`, `webp: 85`).
-* **30-Day Immutable Browser Caching:** Nginx attaches `Cache-Control: public, max-age=2592000, immutable` and `Access-Control-Allow-Origin: *`, allowing `*.trapoist.mx` web and mobile clients to cache static cartography locally for 30 days.
+* **CARTO Positron Visual Style & Retina Fallback:** Serves the high-contrast `positron-custom` style (`#fafaf8` bone background, crisp `#dddddd` street casings) so colored fleet polylines stand out clearly. For legacy devices without WebGL, TileServer GL dynamically renders `512px` standard and `@2x` Retina PNG tiles (`maxScaleFactor: 2`, `png: 90`, `webp: 85`).
+* **30-Day Immutable Browser Caching:** Nginx attaches `Cache-Control: public, max-age=2592000, immutable` and `Access-Control-Allow-Origin: *`, allowing internal web and mobile clients to cache static cartography locally for 30 days.
 
 ### B. Sub-Millisecond Street Routing & $N \times M$ Matrix Computation (`OSRM`)
 Powered by **OSRM** compiled against the Mexican national road network (`setup_osrm.sh`), enforcing strict GeoJSON coordinate ordering (`[longitude, latitude]`):
@@ -224,9 +224,9 @@ sequenceDiagram
 
 | Subsystem / Endpoint | Method & Path | Content-Type / Output | Primary Purpose |
 | :--- | :--- | :--- | :--- |
-| **Vector Style Specification** | `GET /styles/positron-trapoist/style.json` | `application/json` | MapLibre GL / WebGL style definition with CORS (`*`) |
+| **Vector Style Specification** | `GET /styles/positron-custom/style.json` | `application/json` | MapLibre GL / WebGL style definition with CORS (`*`) |
 | **Protobuf Vector Tiles** | `GET /data/v3/{z}/{x}/{y}.pbf` | `application/x-protobuf` | Gzip-compressed vector geometry rendered at 60 FPS on client GPU |
-| **Retina Raster Fallback** | `GET /styles/positron-trapoist/{z}/{x}/{y}@2x.png` | `image/png` | Server-rendered `512px` high-DPI tiles for standard `L.tileLayer` |
+| **Retina Raster Fallback** | `GET /styles/positron-custom/{z}/{x}/{y}@2x.png` | `image/png` | Server-rendered `512px` high-DPI tiles for standard `L.tileLayer` |
 | **Point-to-Point Routing** | `GET /api/route/route/v1/driving/{lon},{lat};...` | `application/json` (GeoJSON) | Street-level trajectory, metric distance, duration & turn maneuvers |
 | **$N \times M$ Distance Matrix** | `GET /api/route/table/v1/driving/{lon},{lat};...` | `application/json` | Asymmetric travel time and distance matrix across multiple stops |
 | **VRPTW Fleet Optimizer** | `POST /api/optimize` | `application/json` | Multi-vehicle route sequencing with time windows, capacities & breaks |

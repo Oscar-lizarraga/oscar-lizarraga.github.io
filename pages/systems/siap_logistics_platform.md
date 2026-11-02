@@ -106,7 +106,7 @@ title: "SIAP: Distributed Multi-Service Logistics & Last-Mile Delivery Platform"
 
 Enterprise last-mile logistics and parcel operations require real-time visibility across thousands of active shipments, asynchronous multi-carrier integration (DHL Express, FedEx, Estafeta), and immediate synthesis of legally binding digital delivery receipts (**ePOD - Electronic Proof of Delivery**). Field drivers operating the **Rigel** mobile app continuously submit GPS coordinates, 1 to 4 high-resolution delivery photos, and digital recipient signatures across variable cellular networks.
 
-To support these operations for **TraPoist** without bottlenecks or downtime, I architected and engineered **SIAP** (*Sistema Integral de Administracion de Paqueteria*): a 16-container polyglot microservices ecosystem orchestrated on Docker (`siap-network`) and Microsoft Azure. The architecture decouples core transactional ERP operations (**.NET 8 Core**), 24/7 database Change Stream synchronization (**Golang 1.22**), ephemeral Blue/Green web portals (**Python / Flask**), and headless document/label synthesis (**FastAPI / Playwright / Chromium**) over a hybrid persistence layer (**PostgreSQL 15, Azure Cosmos DB, MongoDB 7.0, Azure Service Bus, and Azure Blob Storage**).
+To support nationwide operations without bottlenecks or downtime, I architected and engineered **SIAP** (*Sistema Integral de Administracion de Paqueteria*): a 16-container polyglot microservices ecosystem orchestrated on Docker (`siap-network`) and Microsoft Azure. The architecture decouples core transactional ERP operations (**.NET 8 Core**), 24/7 database Change Stream synchronization (**Golang 1.22**), ephemeral Blue/Green web portals (**Python / Flask**), and headless document/label synthesis (**FastAPI / Playwright / Chromium**) over a hybrid persistence layer (**PostgreSQL 15, Azure Cosmos DB, MongoDB 7.0, Azure Service Bus, and Azure Blob Storage**).
 
 ---
 
@@ -347,7 +347,7 @@ stateDiagram-v2
 | Service / Container | Technology | Port (Host:Internal) | Memory Limit | Primary Responsibility |
 | :--- | :--- | :---: | :---: | :--- |
 | **`siap-nginx-proxy`** | Nginx Alpine | `80, 443, 5000` | `200 MB` | TLS termination, rate limiting, Blue/Green upstream routing |
-| **`oauth2-proxy`** | OAuth2 Proxy (OIDC) | `4180` (Internal) | `100 MB` | Microsoft Entra ID (Azure AD) corporate SSO for `*.trapoist.mx` |
+| **`oauth2-proxy`** | OAuth2 Proxy (OIDC) | `4180` (Internal) | `100 MB` | Microsoft Entra ID (Azure AD) corporate SSO across internal subdomains |
 | **`siap-certbot`** | Certbot | *Daemon* | `100 MB` | Automated 12-hour Let's Encrypt SSL certificate renewal |
 | **`siap-api-service`** | .NET 8 Core / C# / Dapper | `5059:8080` | `400 MB` | Core ERP API, shipments, batches, SSE, Azure Service Bus producer |
 | **`siap-visor-web-blue/green`** | Python 3.9 / Flask / Gunicorn | `5001 / 5003 : 5000` | `600 MB` | Zero-downtime operational portal, fleet/odometer audit, AI Gateway |

@@ -105,7 +105,7 @@ title: "Enterprise HR, Fleet Licensing & Document Compliance Platform"
 
 Logistics and transportation companies face strict regulatory and operational compliance requirements for their workforce: tracking multi-stage employee onboarding, auditing driver license expiration dates across active fleet operators, securing sensitive personal identification documents, and generating standardized employee dossiers (*Hojas de Vida*).
 
-To centralize and automate these workflows for **TraPoist**, I designed and built an **Enterprise Human Resources & Compliance Platform**: a 5-project **.NET 8** solution combining a **Blazor WebAssembly Progressive Web App (`HumanResource.WEB`)**, a **RESTful Backend API (`HumanResource.API`)**, a **Dapper + Azure Blob Storage Data Layer (`HumanResource.DAL`)**, a shared **Business Object Layer (`HumanResource.BOL`)**, and an **automated `xUnit` integration test suite (`HumanResource.Tests`)**. The platform features zero-touch **DbUp** SQL migrations, automatic **SixLabors.ImageSharp** dual-resolution portrait processing, time-limited **Azure Blob SAS** document links, and real-time **QuestPDF** dossier generation with clickable cloud verification links.
+To centralize and automate these workflows at enterprise scale, I designed and built an **Enterprise Human Resources & Compliance Platform**: a 5-project **.NET 8** solution combining a **Blazor WebAssembly Progressive Web App (`HumanResource.WEB`)**, a **RESTful Backend API (`HumanResource.API`)**, a **Dapper + Azure Blob Storage Data Layer (`HumanResource.DAL`)**, a shared **Business Object Layer (`HumanResource.BOL`)**, and an **automated `xUnit` integration test suite (`HumanResource.Tests`)**. The platform features zero-touch **DbUp** SQL migrations, automatic **SixLabors.ImageSharp** dual-resolution portrait processing, time-limited **Azure Blob SAS** document links, and real-time **QuestPDF** dossier generation with clickable cloud verification links.
 
 ---
 
@@ -136,8 +136,8 @@ graph TB
 
     subgraph STORAGE ["4. Hybrid Persistence & Cloud Storage"]
         Postgres16[("humanresource-db-v2 (PostgreSQL 16)<br/><b>Port 5432 | unaccent Extension</b><br/>• employee, employee_details, identification, payroll<br/>• employee_departure, document, auditlog<br/>• Stored Functions (employee_get_resume, missing_steps)")]
-        AzureBlobs[("Azure Blob Storage (trapoist)<br/><b>Containers: humanresource & resources</b><br/>• /Employee/Photo/{id}.png & _300x300.jpg<br/>• /employee/{id}/ Compliance Documents")]
-        SambaShare[("On-Premise CIFS / Samba Volume<br/><b>SMB v3.0 (//192.168.1.49/home)</b><br/>• Local Network Document Exchange")]
+        AzureBlobs[("Azure Blob Storage (Cloud Vault)<br/><b>Containers: humanresource & resources</b><br/>• /Employee/Photo/{id}.png & _300x300.jpg<br/>• /employee/{id}/ Compliance Documents")]
+        SambaShare[("On-Premise CIFS / Samba Volume<br/><b>SMB v3.0 Network Mount</b><br/>• Local Network Document Exchange")]
     end
 
     BlazorWASM --> Modules

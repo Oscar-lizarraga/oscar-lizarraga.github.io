@@ -104,13 +104,13 @@ title: "Voyager Commercial ERP: Enterprise B2B Project & Cloud Manifest Platform
 
 In B2B logistics and distribution, every operational campaign begins in the commercial department: defining corporate clients, brands, authorized service levels, delivery schedules, suppliers, and commercial agents. Manually translating commercial agreements into operational logistics templates often leads to disconnected spreadsheets, missing project identifiers, and delayed warehouse onboarding.
 
-To bridge commercial sales and warehouse execution for **TraPoist**, I architected and built **Voyager Commercial App**: a containerized 4-layer **.NET 8** enterprise platform (`Commercial.WEB`, `Commercial.API`, `Commercial.DAL`, `Commercial.BOL`) backed by **PostgreSQL 16** and **Microsoft Graph API (SharePoint)**. When a commercial executive registers a new campaign project, the system atomically persists the relational and `JSONB` payload in PostgreSQL, dynamically synthesizes an OpenXML Excel manifest (`.xlsx`) in memory with embedded internal metadata, authenticates against **Microsoft Entra ID (OAuth2 `client_credentials`)**, and provisions the workbook directly into the corporate SharePoint drive to trigger downstream logistics ETL pipelines.
+To bridge commercial sales and warehouse execution across nationwide operations, I architected and built **Voyager Commercial App**: a containerized 4-layer **.NET 8** enterprise platform (`Commercial.WEB`, `Commercial.API`, `Commercial.DAL`, `Commercial.BOL`) backed by **PostgreSQL 16** and **Microsoft Graph API (SharePoint)**. When a commercial executive registers a new campaign project, the system atomically persists the relational and `JSONB` payload in PostgreSQL, dynamically synthesizes an OpenXML Excel manifest (`.xlsx`) in memory with embedded internal metadata, authenticates against **Microsoft Entra ID (OAuth2 `client_credentials`)**, and provisions the workbook directly into the corporate SharePoint drive to trigger downstream logistics ETL pipelines.
 
 ---
 
 ## 1. Multi-Layered .NET 8 Solution Architecture
 
-The solution (`Trapoist.sln`) strictly enforces separation of concerns across four projects orchestrated inside a 3-container Docker Compose topology (`commercial-web`, `commercial-api`, `commercial-db`):
+The solution (`Commercial.sln`) strictly enforces separation of concerns across four projects orchestrated inside a 3-container Docker Compose topology (`commercial-web`, `commercial-api`, `commercial-db`):
 
 ```mermaid
 graph TB
