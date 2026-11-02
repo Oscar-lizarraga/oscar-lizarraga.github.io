@@ -1,0 +1,28 @@
+## Rigel | Last mile app
+
+This app is for create a Proof Of Delivery, with simple form. 
+What we need the client ? 
+
+- Reciver Name
+- Photos
+- Signature
+
+What we need ? 
+We are gonna use .NET Blazor Hybrid, why ? bcs is more easy to bring another components from WEB API.
+
+ - .NET 8
+ - Blazor
+ - Cosmo DB
+ - Mongo DB
+ - SQLite
+
+
+How to publish the app | .apk file
+First we need to sign the project name as 'sideloading' with .keystore file, thats how the app
+knows who is the owner go to ur root file where you have your .csproj 
+
+```powershell
+dotnet publish -f net8.0-android -c Release -p:AndroidKeyStore=true -p:AndroidSigningKeyAlias=alias -p:AndroidSigningKeyPass=password -p:AndroidSigningStorePass=password
+```
+
+With this we get a .keystore

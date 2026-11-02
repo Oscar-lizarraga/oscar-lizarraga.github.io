@@ -53,5 +53,23 @@
       </footer>
    </div>
    <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
+   <!-- Mermaid.js para renderizado automático de diagramas de arquitectura -->
+   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+   <script>
+      document.addEventListener("DOMContentLoaded", function () {
+         var blocks = document.querySelectorAll("div.language-mermaid, pre.language-mermaid, pre code.language-mermaid");
+         blocks.forEach(function (el) {
+            var codeEl = el.querySelector("code") || el;
+            var codeText = codeEl.textContent.trim();
+            var target = (el.tagName.toLowerCase() === "code") ? el.closest("pre") : el;
+            var div = document.createElement("div");
+            div.className = "mermaid";
+            div.textContent = codeText;
+            target.parentNode.replaceChild(div, target);
+         });
+         mermaid.initialize({ startOnLoad: false, theme: 'default' });
+         mermaid.run();
+      });
+   </script>
 </body>
 </html>
