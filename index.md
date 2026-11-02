@@ -10,6 +10,30 @@ A high-throughput, polyglot microservices ecosystem combining .NET 8 Core (C#), 
 <img src="images/systems/siap_cover.png?raw=true"/>
 ---
 
+### <span class="blue-title" style="color: #267CB9; font-weight: 400;">Enterprise B2B Commercial ERP & Cloud Manifest Provisioning</span>
+
+[Voyager Commercial ERP: Enterprise B2B Project & Cloud Manifest Platform](/pages/systems/commercial_management_platform.md)  
+A 4-layer .NET 8 enterprise platform combining Blazor Interactive Server (Radzen UI), ASP.NET Core 8 Web API with Identity Bearer authentication, Dapper stored functions over PostgreSQL 16 (JSONB), and ClosedXML. Automatically synthesizes in-memory OpenXML Excel manifests with embedded metadata and provisions them into corporate SharePoint drives via Microsoft Entra ID (OAuth2) and Graph API v1.0.  
+
+<img src="images/systems/commercial_cover.png?raw=true"/>
+---
+
+### <span class="blue-title" style="color: #267CB9; font-weight: 400;">Enterprise Human Resources, Fleet Licensing & Document Compliance</span>
+
+[Enterprise HR, Fleet Licensing & Document Compliance Platform](/pages/systems/hr_workforce_platform.md)  
+A 5-project .NET 8 solution featuring a Blazor WebAssembly Progressive Web App (PWA), ASP.NET Core 8 Web API, automated DbUp PostgreSQL 16 migrations, and a 7-suite xUnit integration test harness. Includes SixLabors.ImageSharp dual-resolution portrait processing, dynamic Azure Blob Storage SAS document signing, and real-time QuestPDF employee dossier synthesis with clickable cloud verification links.  
+
+<img src="images/systems/hr_cover.png?raw=true"/>
+---
+
+### <span class="blue-title" style="color: #267CB9; font-weight: 400;">Geospatial Infrastructure, Vector Cartography & VRP Fleet Optimization</span>
+
+[Self-Hosted Geospatial Vector Tile Server, OSRM Routing & VRP Fleet Optimizer](/pages/systems/geospatial_routing_engine.md)  
+A 100% on-premise geospatial and operations research stack integrating TileServer GL (OpenMapTiles .pbf Vector Tiles for 60 FPS MapLibre WebGL rendering), OSRM street-level routing and NxM distance matrices across Mexico, and VROOM metaheuristic optimization solving Capacitated Vehicle Routing Problems with Time Windows (CVRPTW) for up to 200 vehicles and 1,000 stops per batch.  
+
+<img src="images/systems/maps_cover.png?raw=true"/>
+---
+
 ### <span class="blue-title" style="color: #267CB9; font-weight: 400;">Case Study: High-Throughput Data Ingestion & Applied AI</span>
 
 [Logistics ETL Pipeline with Self-Healing AI Remediation](/pages/systems/self_healing_etl.md)  

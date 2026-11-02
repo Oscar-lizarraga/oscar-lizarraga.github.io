@@ -216,33 +216,33 @@ Engineered in pure **Go 1.22** (`go.mongodb.org/mongo-driver` with `MaxPoolSize=
 ```mermaid
 sequenceDiagram
     autonumber
-    actor Driver as "Rigel Driver App"
-    participant Cosmos as "Cosmos DB (rigel.Movements)"
-    participant GoDaemon as "Go Daemon (rigel-to-packagelog)"
-    participant PG as "PostgreSQL 15 (siap-db)"
-    participant EpodQueue as "MongoDB (packagelog.EpodTasks)"
-    participant Worker as "siap-epod-worker (Python)"
-    participant DotNet as "siap-api-service (.NET 8)"
-    participant Azure as "Azure Blob Storage"
-    participant DLQ as "packagelog.ErrorLogs (DLQ)"
+    actor Driver as Rigel Driver App
+    participant Cosmos as Cosmos DB (rigel.Movements)
+    participant GoDaemon as Go Daemon (rigel-to-packagelog)
+    participant PG as PostgreSQL 15 (siap-db)
+    participant EpodQueue as MongoDB (packagelog.EpodTasks)
+    participant Worker as siap-epod-worker (Python)
+    participant DotNet as siap-api-service (.NET 8)
+    participant Azure as Azure Blob Storage
+    participant DLQ as packagelog.ErrorLogs (DLQ)
 
     Driver->>Cosmos: Submit Delivery (Status, GPS, 1-4 Photos, Signature)
     Note over Cosmos,GoDaemon: Real-time Change Stream Emission (ResumeToken Tracked)
     Cosmos-->>GoDaemon: Change Stream Event (Movement Document)
     
     par 7-Stage Parallel Synchronization in Go (64MB RAM)
-        GoDaemon->>PG: Atomic CTE Update (shipment.package & shipment.guide)
-        GoDaemon->>EpodQueue: Upsert PENDING Task in packagelog.EpodTasks (Guides, Metrics & Routes)
+        GoDaemon->>PG: Atomic CTE Update (shipment.package and shipment.guide)
+        GoDaemon->>EpodQueue: Upsert PENDING Task in packagelog.EpodTasks (Guides, Metrics and Routes)
     end
 
     Note over EpodQueue,Worker: Asynchronous Atomic Lock Acquisition
-    Worker->>EpodQueue: find_one_and_update(status='PENDING') -> status='PROCESSING'
+    Worker->>EpodQueue: find_one_and_update(status=PENDING) to PROCESSING
     
     alt Valid Project Found in PostgreSQL
         Worker->>DotNet: GET /api/shipments/guides/{guide}/epod-details
-        DotNet->>PG: Query ProjectId (e.g., PR26-1015) & Destination Address
+        DotNet->>PG: Query ProjectId (PR26-1015) and Destination Address
         PG-->>DotNet: Relational Metadata Returned
-        DotNet-->>Worker: Return ProjectId & Address Payload
+        DotNet-->>Worker: Return ProjectId and Address Payload
         
         Worker->>Azure: Download Raw Evidence Photos via BlobServiceClient SDK
         Azure-->>Worker: High-Resolution Image Bytes
@@ -253,13 +253,13 @@ sequenceDiagram
         Azure-->>Worker: Blob Persisted
         
         Worker->>Worker: Sign 1-Year Azure SAS Token
-        Worker->>EpodQueue: UPDATE EpodTasks SET status='COMPLETED', epodUrl=sasUrl
-        Worker->>Cosmos: UPDATE Movements & Guides SET epodUrl=sasUrl
+        Worker->>EpodQueue: UPDATE EpodTasks SET status=COMPLETED, epodUrl=sasUrl
+        Worker->>Cosmos: UPDATE Movements and Guides SET epodUrl=sasUrl
     else Unassigned Project in PostgreSQL (404)
         Worker->>DotNet: GET /api/shipments/guides/{guide}/epod-details
         DotNet-->>Worker: 404 Not Found
         Worker->>DLQ: INSERT INTO packagelog.ErrorLogs (Missing SIAP Project)
-        Worker->>EpodQueue: UPDATE EpodTasks SET status='FAILED'
+        Worker->>EpodQueue: UPDATE EpodTasks SET status=FAILED
     end
 ```
 
@@ -283,26 +283,26 @@ To eliminate `502 Bad Gateway` errors, broken in-flight PDF downloads, and force
 ```mermaid
 sequenceDiagram
     autonumber
-    actor Admin as "Systems Engineer"
-    participant Script as "deploy.sh"
-    participant Docker as "Docker Engine"
-    participant Target as "Green Instance (:5003)"
-    participant Nginx as "siap-nginx-proxy"
-    participant Active as "Blue Instance (:5001)"
+    actor Admin as Systems Engineer
+    participant Script as deploy.sh
+    participant Docker as Docker Engine
+    participant Target as Green Instance (5003)
+    participant Nginx as siap-nginx-proxy
+    participant Active as Blue Instance (5001)
 
     Admin->>Script: Execute ./deploy.sh
-    Script->>Docker: 1. Detect active container (Blue :5001 is serving traffic)
-    Script->>Docker: 2. Build & start target container (visor-web-green :5003)
+    Script->>Docker: 1. Detect active container (Blue 5001 is serving traffic)
+    Script->>Docker: 2. Build and start target container (visor-web-green 5003)
     loop Liveness Probe (Up to 30s)
-        Script->>Target: 3. GET http://127.0.0.1:5003/health (<2ms response)
+        Script->>Target: 3. GET /health (under 2ms response)
         Target-->>Script: HTTP 200 OK
     end
-    Script->>Nginx: 4. Rewrite nginx_upstream.conf (Green: primary, Blue: backup)
-    Script->>Nginx: 5. docker exec siap-nginx-proxy nginx -s reload (0.00s cutover)
-    Note over Nginx,Active: New traffic routes to Green; in-flight requests finish on Blue
+    Script->>Nginx: 4. Rewrite nginx_upstream.conf (Green primary, Blue backup)
+    Script->>Nginx: 5. Reload Nginx configuration (0.00s cutover)
+    Note over Nginx,Active: New traffic routes to Green while in-flight requests finish on Blue
     Script->>Script: 6. Connection Draining grace period (30 seconds)
-    Script->>Nginx: 7. Remove Blue from nginx_upstream.conf & reload Nginx
-    Script->>Docker: 8. docker stop siap-visor-web-blue (Reclaims ~186 MiB RAM)
+    Script->>Nginx: 7. Remove Blue from nginx_upstream.conf and reload Nginx
+    Script->>Docker: 8. Stop siap-visor-web-blue (Reclaims ~186 MiB RAM)
     Script-->>Admin: Zero-Downtime Release Completed
 ```
 
@@ -321,23 +321,23 @@ SIAP combines strict relational ACID schemas in **PostgreSQL 15** with high-thro
 
 ```mermaid
 stateDiagram-v2
-    [*] --> PENDING : Go Daemon (rigel-to-packagelog) Upserts Task
+    [*] --> PENDING : Go Daemon Upserts Task
     PENDING --> PROCESSING : Worker Atomic Lock (find_one_and_update)
     
     state PROCESSING {
         [*] --> ValidateProject
         ValidateProject --> DownloadEvidences : ProjectId Valid in PostgreSQL
         ValidateProject --> ProjectNotFound : 404 in PostgreSQL
-        DownloadEvidences --> RenderChromium : Lanczos Resize + Base64 Inline
+        DownloadEvidences --> RenderChromium : Lanczos Resize and Base64 Inline
         RenderChromium --> UploadAzure : Compile 1-Page Letter PDF
-        UploadAzure --> SignSAS : Upload to /epod/{projectId}/{status}/
+        UploadAzure --> SignSAS : Upload to Azure Blob (/epod/)
     }
     
     ProjectNotFound --> FAILED : Log to packagelog.ErrorLogs (DLQ)
-    SignSAS --> COMPLETED : Persist 1-Year SAS URL in Cosmos & Mongo
+    SignSAS --> COMPLETED : Persist 1-Year SAS URL in Cosmos and Mongo
     
-    PROCESSING --> PENDING : Transient Network Error / Timeout
-    PROCESSING --> PENDING : Stale Lock Auto-Recovery (>5 min)
+    PROCESSING --> PENDING : Transient Network Error or Timeout
+    PROCESSING --> PENDING : Stale Lock Auto-Recovery (over 5 min)
     PROCESSING --> FAILED : Max Retries Exhausted
     
     COMPLETED --> [*]
