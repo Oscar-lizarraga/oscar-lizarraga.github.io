@@ -3,12 +3,93 @@ layout: default
 title: "Logistics ETL Pipeline with Self-Healing AI Remediation"
 ---
 
+<style>
+.project-meta-card {
+   background: #f8fafc;
+   border: 1px solid #e2e8f0;
+   border-left: 4px solid #267CB9;
+   border-radius: 6px;
+   padding: 16px 18px;
+   margin: 16px 0 24px 0;
+   font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.project-meta-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+   gap: 12px 20px;
+   padding-bottom: 12px;
+   border-bottom: 1px solid #e2e8f0;
+   margin-bottom: 12px;
+}
+.project-meta-item {
+   display: flex;
+   flex-direction: column;
+}
+.project-meta-item.full-width {
+   grid-column: 1 / -1;
+}
+.project-meta-label {
+   font-size: 10.5px;
+   font-weight: 700;
+   text-transform: uppercase;
+   letter-spacing: 0.06em;
+   color: #267CB9;
+   margin-bottom: 3px;
+}
+.project-meta-value {
+   font-size: 13.5px;
+   color: #222222;
+   font-weight: 400;
+   line-height: 1.4;
+}
+.project-stack-list {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 6px;
+   margin-top: 6px;
+}
+.tech-badge {
+   display: inline-block;
+   background: #ffffff;
+   color: #267CB9;
+   border: 1px solid #bcd6eb;
+   border-radius: 4px;
+   padding: 2px 9px;
+   font-size: 12px;
+   font-weight: 400;
+   line-height: 1.5;
+}
+</style>
+
 # High-Throughput Logistics ETL with Self-Healing AI Remediation
 
-**Published:** October 2026 
-**Role:** Backend & Cloud Architect / Systems Engineer 
-**Domain:** Supply Chain & Logistics Engineering 
-**Stack:** Go (Golang), PostgreSQL, Azure AI Foundry (LLM), Microsoft Graph API (SharePoint), Docker, Alpine Linux 
+<div class="project-meta-card">
+  <div class="project-meta-grid">
+    <div class="project-meta-item">
+      <span class="project-meta-label">Published</span>
+      <span class="project-meta-value">October 2026</span>
+    </div>
+    <div class="project-meta-item">
+      <span class="project-meta-label">Role</span>
+      <span class="project-meta-value">Backend &amp; Cloud Architect / Systems Engineer</span>
+    </div>
+    <div class="project-meta-item full-width">
+      <span class="project-meta-label">Domain</span>
+      <span class="project-meta-value">Supply Chain &amp; Logistics Engineering</span>
+    </div>
+  </div>
+  <div class="project-meta-item">
+    <span class="project-meta-label">Technology Stack</span>
+    <div class="project-stack-list">
+      <span class="tech-badge">Go (Golang 1.22+)</span>
+      <span class="tech-badge">PostgreSQL 15 (pgx/v5)</span>
+      <span class="tech-badge">Azure AI Foundry (LLM)</span>
+      <span class="tech-badge">Microsoft Graph API (SharePoint)</span>
+      <span class="tech-badge">Excelize v2</span>
+      <span class="tech-badge">Docker &amp; Alpine Linux</span>
+    </div>
+  </div>
+</div> 
 
 ---
 

@@ -16,6 +16,92 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    {% seo %}
    <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+   <style>
+      /* Mejoras de diseño compatibles con GitHub Pages (tema minimal) */
+      @media screen and (min-width: 961px) {
+         .wrapper { width: 980px; }
+         section { width: 630px; }
+      }
+      .blue-title {
+         color: #267CB9 !important;
+         font-weight: 400 !important;
+      }
+      a strong {
+         color: inherit;
+      }
+      .project-cover-img {
+         border-radius: 6px;
+         border: 1px solid #e2e8f0;
+         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+         margin-top: 8px;
+         margin-bottom: 6px;
+         display: block;
+      }
+      /* Tarjeta de metadatos de proyecto (Published, Role, Domain, Stack) */
+      .project-meta-card {
+         background: #f8fafc;
+         border: 1px solid #e2e8f0;
+         border-left: 4px solid #267CB9;
+         border-radius: 6px;
+         padding: 16px 18px;
+         margin: 16px 0 24px 0;
+         font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+      .project-meta-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+         gap: 12px 20px;
+         padding-bottom: 12px;
+         border-bottom: 1px solid #e2e8f0;
+         margin-bottom: 12px;
+      }
+      .project-meta-item {
+         display: flex;
+         flex-direction: column;
+      }
+      .project-meta-item.full-width {
+         grid-column: 1 / -1;
+      }
+      .project-meta-label {
+         font-size: 10.5px;
+         font-weight: 700;
+         text-transform: uppercase;
+         letter-spacing: 0.06em;
+         color: #267CB9;
+         margin-bottom: 3px;
+      }
+      .project-meta-value {
+         font-size: 13.5px;
+         color: #222222;
+         font-weight: 400;
+         line-height: 1.4;
+      }
+      .project-stack-list {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 6px;
+         margin-top: 6px;
+      }
+      .tech-badge {
+         display: inline-block;
+         background: #ffffff;
+         color: #267CB9;
+         border: 1px solid #bcd6eb;
+         border-radius: 4px;
+         padding: 2px 9px;
+         font-size: 12px;
+         font-weight: 400;
+         line-height: 1.5;
+      }
+      .mermaid {
+         background: #ffffff;
+         border: 1px solid #e5e5e5;
+         border-radius: 6px;
+         padding: 12px;
+         margin: 16px 0;
+         overflow-x: auto;
+      }
+   </style>
    <!--[if lt IE 9]>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
    <![endif]-->
