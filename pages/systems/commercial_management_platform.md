@@ -67,7 +67,7 @@ title: "Voyager Commercial ERP: Enterprise B2B Project & Cloud Manifest Platform
   <div class="project-meta-grid">
     <div class="project-meta-item">
       <span class="project-meta-label">Published</span>
-      <span class="project-meta-value">September 2026</span>
+      <span class="project-meta-value">April 2025</span>
     </div>
     <div class="project-meta-item">
       <span class="project-meta-label">Role</span>

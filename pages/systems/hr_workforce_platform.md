@@ -67,7 +67,7 @@ title: "Enterprise HR, Fleet Licensing & Document Compliance Platform"
   <div class="project-meta-grid">
     <div class="project-meta-item">
       <span class="project-meta-label">Published</span>
-      <span class="project-meta-value">August 2026</span>
+      <span class="project-meta-value">July 2024</span>
     </div>
     <div class="project-meta-item">
       <span class="project-meta-label">Role</span>

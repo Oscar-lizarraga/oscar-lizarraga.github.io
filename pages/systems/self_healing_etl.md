@@ -67,7 +67,7 @@ title: "Logistics ETL Pipeline with Self-Healing AI Remediation"
   <div class="project-meta-grid">
     <div class="project-meta-item">
       <span class="project-meta-label">Published</span>
-      <span class="project-meta-value">October 2026</span>
+      <span class="project-meta-value">July 2026</span>
     </div>
     <div class="project-meta-item">
       <span class="project-meta-label">Role</span>

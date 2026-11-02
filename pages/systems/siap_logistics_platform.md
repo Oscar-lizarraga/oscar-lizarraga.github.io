@@ -67,7 +67,7 @@ title: "SIAP: Distributed Multi-Service Logistics & Last-Mile Delivery Platform"
   <div class="project-meta-grid">
     <div class="project-meta-item">
       <span class="project-meta-label">Published</span>
-      <span class="project-meta-value">November 2026</span>
+      <span class="project-meta-value">June 2026</span>
     </div>
     <div class="project-meta-item">
       <span class="project-meta-label">Role</span>
