@@ -1,231 +1,249 @@
-# MathFinity: Distributed Core Banking, Credit Prospect Classification & Transactional Ledger Platform
+---
+layout: default
+title: "Core Retail Banking, Credit Risk Underwriting & Distributed Transactional Platform"
+---
+
+<style>
+.project-meta-card {
+   background: #f8fafc;
+   border: 1px solid #e2e8f0;
+   border-left: 4px solid #267CB9;
+   border-radius: 6px;
+   padding: 16px 18px;
+   margin: 16px 0 24px 0;
+   font-family: "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.project-meta-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+   gap: 12px 20px;
+   padding-bottom: 12px;
+   border-bottom: 1px solid #e2e8f0;
+   margin-bottom: 12px;
+}
+.project-meta-item {
+   display: flex;
+   flex-direction: column;
+}
+.project-meta-item.full-width {
+   grid-column: 1 / -1;
+}
+.project-meta-label {
+   font-size: 10.5px;
+   font-weight: 700;
+   text-transform: uppercase;
+   letter-spacing: 0.06em;
+   color: #267CB9;
+   margin-bottom: 3px;
+}
+.project-meta-value {
+   font-size: 13.5px;
+   color: #222222;
+   font-weight: 400;
+   line-height: 1.4;
+}
+.project-stack-list {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 6px;
+   margin-top: 6px;
+}
+.tech-badge {
+   display: inline-block;
+   background: #ffffff;
+   color: #267CB9;
+   border: 1px solid #bcd6eb;
+   border-radius: 4px;
+   padding: 2px 9px;
+   font-size: 12px;
+   font-weight: 400;
+   line-height: 1.5;
+}
+</style>
+
+# Core Retail Banking, Credit Risk Underwriting & Distributed Transactional Platform
 
 <div class="project-meta-card">
-  <div class="meta-grid">
-    <div class="meta-item">
-      <span class="meta-label">Published</span>
-      <span class="meta-value">May 2024</span>
+  <div class="project-meta-grid">
+    <div class="project-meta-item">
+      <span class="project-meta-label">Published</span>
+      <span class="project-meta-value">May 2024</span>
     </div>
-    <div class="meta-item">
-      <span class="meta-label">Role</span>
-      <span class="meta-value">Backend &amp; Database Architect</span>
+    <div class="project-meta-item">
+      <span class="project-meta-label">Role</span>
+      <span class="project-meta-value">Backend &amp; Database Architect</span>
     </div>
-    <div class="meta-item">
-      <span class="meta-label">Domain</span>
-      <span class="meta-value">Core Retail Banking, Credit Risk Underwriting &amp; Distributed Databases</span>
+    <div class="project-meta-item full-width">
+      <span class="project-meta-label">Domain</span>
+      <span class="project-meta-value">Core Retail Banking, Credit Risk Underwriting, Branch/ATM Liquidity &amp; Financial Ledger Governance</span>
     </div>
   </div>
-  <div class="meta-divider"></div>
-  <div class="meta-stack-label">Technology Stack</div>
-  <div class="badge-container">
-    <span class="tech-badge badge-dotnet">.NET 8 Core (C#)</span>
-    <span class="tech-badge badge-dotnet">Blazor WebAssembly</span>
-    <span class="tech-badge badge-dotnet">ASP.NET Core 8 Web API</span>
-    <span class="tech-badge badge-dotnet">Dapper 2.1 &amp; EF Core 8 Identity</span>
-    <span class="tech-badge badge-db">Microsoft SQL Server</span>
-    <span class="tech-badge badge-infra">Docker &amp; WSL2 Virtual Network</span>
-    <span class="tech-badge badge-ui">Radzen Blazor UI</span>
-    <span class="tech-badge badge-ai">Credit Risk Classification Model</span>
+  <div class="project-meta-item">
+    <span class="project-meta-label">Technology Stack</span>
+    <div class="project-stack-list">
+      <span class="tech-badge">.NET 8 Enterprise Stack</span>
+      <span class="tech-badge">Blazor WebAssembly</span>
+      <span class="tech-badge">RESTful Banking API</span>
+      <span class="tech-badge">Distributed Microsoft SQL Server</span>
+      <span class="tech-badge">Docker &amp; Isolated Virtual Network</span>
+      <span class="tech-badge">Credit Risk Classification Model</span>
+      <span class="tech-badge">Role-Based Access Governance</span>
+    </div>
   </div>
 </div>
 
-![MathFinity Core Banking Architecture](/images/database/mathfinity_cover.png)
+![Core Retail Banking Architecture](/images/database/mathfinity_cover.png)
 
 ---
 
 ## Executive Summary
 
-**MathFinity** is a 4-layer enterprise banking and credit risk management platform built on **.NET 8**, **Blazor WebAssembly**, **ASP.NET Core 8 Web API**, **Dapper**, and a **distributed Microsoft SQL Server database containerized with Docker over WSL2**.
+This platform was engineered to modernize and centralize the core operational workflows of a retail banking institution. Built over a **distributed Microsoft SQL Server architecture containerized in Docker**, the system unifies **data-driven credit card underwriting**, **advisor-assisted customer onboarding**, **checking account and dual-card issuance (Credit and Debit)**, **physical branch and ATM cash-vault management**, and **auditable financial transaction processing**.
 
-Designed to model the end-to-end operational lifecycle of a retail bank, the platform unifies **automated credit card prospect classification**, **advisor-assisted customer onboarding**, **checking account and dual-card issuance (Credit & Debit)**, **branch and ATM cash-vault administration**, and **disjoint financial transaction processing (inter-account wire transfers and cardless ATM withdrawals)** behind a 100% Stored-Procedure Data Access Layer.
-
----
-
-## 1. Core Business Logic & Banking Problems Solved
-
-Retail banking systems must simultaneously enforce strict relational integrity on financial ledgers while providing rapid, data-driven credit underwriting for new applicants. MathFinity solves five core business challenges:
-
-### 1.1 Automated Credit Card Prospect Classification (15-Feature Risk Model)
-Before an applicant can open a credit line, the bank must evaluate default risk across socioeconomic, demographic, and credit-bureau variables. MathFinity captures and validates **15 standardized credit risk features** in the `Prospect` domain model (`MathFinity.BOL/Prospect.cs`):
-- **Demographic & Stability Indicators**: `age` (`[0..100]`), `gender` (`0/1`), `married` (`0/1`), `driversLicense` (`0/1`), `citizen` status, `Ethnicity`, and `zipCode`.
-- **Employment & Cash-Flow Capacity**: `employed` (`0/1`), `yearsEmployed` (`[0..100]`), `industry` sector, and gross `income`.
-- **Credit Bureau & Historical Exposure**: current `debt` ratio (`[0..1]`), existing `bankCustomer` relationship (`0/1`), historical `priorDefault` flag (`0/1`), and bureau `creditScore`.
-
-These 15 attributes feed the credit approval classification pipeline to determine whether the prospect qualifies for a revolving credit line (`approvedCreditCard`) and/or a checking debit instrument (`approvedDebitCard`).
-
-### 1.2 Advisor Underwriting & 1:1 Prospect-to-Customer Conversion
-Rather than mixing unverified applicants with active account holders, MathFinity enforces a strict 3-stage onboarding state machine in SQL Server:
-1. **Prospect Registration (`Prospect`)**: Captures the 15 risk classification attributes via `[dbo].[ProspectInsert]`.
-2. **Advisor Underwriting Evaluation (`Interest`)**: Links a bank advisor (`Employee`) to the `Prospect` (`1:1`), recording the evaluation timestamp (`dateInterest`) and the binary underwriting decisions (`approvedCreditCard`, `approvedDebitCard`) via `[dbo].[InterestInsert]` and `[dbo].[InterestUpdate]`.
-3. **Customer & Account Provisioning (`Customer` -> `CurrentAccount`)**: Once approved, the `Interest` record converts `1:1` into a permanent `Customer` profile (`customerID`, `interestID`, `address`, `phone`, `dateCreate`) linked `1:1` to an authenticated `AspNetUsers` identity and a `CurrentAccount` (`accountNumber`, `accountKey`).
-
-### 1.3 Dual-Card Instrument Lifecycle (Credit & Debit Cards)
-Each `CurrentAccount` supports independent `(0:1)` to `(1:1)` relationships with two distinct payment instruments:
-- **Revolving Credit Card (`CreditCard`)**: Tracks `cardNumber`, `accountNumber`, assigned `creditLimit`, current `balance`, billing `closingDate`, payment `dueDate`, `issueDate`, `expireDate`, `CVV`, and encrypted `NIP`.
-- **Checking Debit Card (`DebitCard`)**: Tracks `cardNumber`, `accountNumber`, available liquid `balance`, `issueDate`, `expireDate`, `CVV`, and `NIP` for ATM and POS authorization.
-
-### 1.4 Disjoint Transactional Ledger (Transfers vs. ATM Withdrawals)
-To prevent schema pollution and null-column sparsity in the financial ledger, `Transaction` (`transactionNumber`, `amount`, `approved`, `date`, `accountNumber`) acts as a relational supertype with a **disjoint `1:1` specialization** into two concrete transaction subtypes:
-- **Inter-Account Wire Transfer (`Transfer`)**: Records `transferNumber`, `issuingAccount`, `destinatioAccount`, and foreign key `transactionNumber`.
-- **Cardless / ATM Cash Withdrawal (`WithDrawal`)**: Records `withDrawalNumber`, one-time `securityCode`, and `transactionNumber`, executed against a physical `ATM` unit (`ATMID`, `cashInBox`, `branchID`).
-
-### 1.5 Physical Branch & ATM Cash-Vault Administration
-Bank branches (`Branch`) operate under strict physical capacity rules modeled directly in the relational schema:
-- Each `Branch` (`branchID`, `name`, `address`) manages `(0:N)` bank `Employee` staff members (`employeeID`, `rol`, `hiredDate`, `firstName`, `lastName`, `birthDate`, `sex`).
-- Each `Branch` hosts between `(0:3)` physical `ATM` terminals (`ATMID`, `branchID`, `cashInBox`), enabling real-time monitoring of cash liquidity across the branch network.
+By separating prospective applicants from active account holders and enforcing strict relational controls across every financial movement, the platform eliminates manual underwriting bottlenecks, reduces credit default exposure, and guarantees end-to-end auditability across branch, web, and ATM channels.
 
 ---
 
-## 2. System Architecture & 4-Layer .NET 8 Topology
+## 1. Core Banking Problems Solved & Business Value
 
-MathFinity is structured as a decoupled 4-project **.NET 8** solution (`MathFinity.sln`) communicating over HTTPS and a bridged Docker virtual network connecting the API host to the distributed SQL Server instance:
+Retail banking operations require balancing two competing priorities: **accelerating customer acquisition** for credit and debit products while **maintaining strict risk and accounting controls**. The platform resolves five critical business challenges:
+
+### 1.1 Objective Credit Risk Underwriting (15-Factor Classification Model)
+Manual credit evaluations are slow, inconsistent across branches, and prone to human bias. To standardize credit origination, the platform evaluates every credit applicant across **15 standardized socioeconomic, employment, and credit-bureau indicators** before approving a credit line:
+- **Financial Capacity & Cash Flow**: Verified annual income, continuous years of employment, current employment status, and economic industry sector.
+- **Credit Bureau & Repayment History**: External credit score, current debt-to-income obligation ratio, historical default record (prior defaults), and existing relationship with the bank.
+- **Demographic & Stability Profile**: Applicant age, marital status, residency/citizenship status, verified driver identification, and geographic postal zone.
+
+By structuring these 15 indicators at the point of capture, the bank feeds a classification model that objectively determines whether an applicant qualifies for a **Revolving Credit Card**, a **Checking Debit Card**, or both.
+
+### 1.2 Controlled 3-Stage Customer Onboarding Funnel
+In many legacy systems, unverified leads and rejected credit applicants are stored alongside active bank customers, creating compliance and data-governance risks. This platform enforces a strict **3-stage conversion funnel**:
+1. **Prospect Capture**: Prospective applicants are registered in an isolated prospect repository with their 15 risk profile indicators.
+2. **Advisor Underwriting Evaluation**: A branch advisor reviews the classification output and records a formal underwriting decision (approving or declining Credit Card and Debit Card eligibility) stamped with the advisor's identity and evaluation date.
+3. **Customer & Core Account Conversion**: Only when underwriting is approved does the prospect convert into an active **Bank Customer**, automatically enabling the creation of a **Current Account (Checking Account)** and digital banking credentials.
+
+### 1.3 Dual Payment Instrument Lifecycle (Credit vs. Debit Cards)
+Once a customer holds an active Current Account, the bank can issue and manage two distinct financial instruments with independent business rules:
+- **Revolving Credit Cards**: Governed by an assigned credit limit, billing cut-off date (closing date), payment due date, current utilized balance, validity window (issue and expiration dates), security verification code, and encrypted PIN.
+- **Checking Debit Cards**: Directly tied to the customer's liquid checking balance, governed by validity dates, security verification codes, and encrypted PIN authentication for ATM and point-of-sale usage.
+
+### 1.4 Segregated Financial Transaction Ledger (Wire Transfers vs. ATM Withdrawals)
+Not all banking transactions carry the same operational metadata or risk profile. Rather than forcing all movements into a single generic table filled with empty fields, the financial ledger separates transactions into a **Master Transaction Record** (capturing the unique transaction number, monetary amount, timestamp, approval status, and source account) and two specialized operational sub-ledgers:
+- **Inter-Account Wire Transfers**: Tracks the issuing source account and destination beneficiary account for traceable electronic funds transfers.
+- **Security-Code ATM Cash Withdrawals**: Tracks cardless or ATM cash dispensations authorized via a one-time security code and links each withdrawal directly to the physical ATM terminal that dispensed the cash.
+
+### 1.5 Branch Network & ATM Cash-Vault Liquidity Management
+Physical banking infrastructure requires continuous oversight of human capital and cash reserves:
+- **Branch Governance**: Centralizes the directory of physical bank branches, their geographic locations, and assigned staff roles (branch managers, credit advisors, and operations personnel).
+- **ATM Fleet & Cash-in-Box Tracking**: Enforces a physical governance rule allowing up to **3 ATM terminals per branch**, monitoring the real-time cash available inside each machine vault (`Cash in Box`) to prevent cash-out events and optimize armored cash-replenishment routes.
+
+---
+
+## 2. End-to-End Business Workflow Architecture
+
+The following diagram illustrates how customer acquisition, credit risk underwriting, account provisioning, and transactional execution interact across the bank's operational layers:
 
 ```mermaid
 flowchart TD
-    subgraph ClientLayer["1. Presentation Layer (MathFinity.WEB - Blazor WebAssembly)"]
-        WASM["Blazor WASM SPA (.NET 8)<br/>Radzen.Blazor 4.31 Material UI"]
-        Views["Role-Partitioned Views<br/>Prospects | Transactions | Branches & ATMs | Customers | Advisors"]
-        AuthClient["Components.Authorization<br/>Bearer Token & Route Guards ([Authorize])"]
-        WASM --> Views
-        WASM --> AuthClient
+    subgraph Channels["1. Banking Channels & Role-Segregated Portals"]
+        AdvisorPortal["Branch Advisor & Underwriting Portal<br/>Prospect Evaluation & Account Onboarding"]
+        CustomerPortal["Customer & Cardholder Operations<br/>Balance Inquiry, Wire Transfers & PIN Auth"]
+        BranchAdmin["Branch & ATM Network Administration<br/>Staff Allocation & ATM Cash-Vault Monitoring"]
     end
 
-    subgraph APILayer["2. Service & Identity Layer (MathFinity.API - ASP.NET Core 8)"]
-        IdentityAPI["ASP.NET Core Identity Endpoints<br/>app.MapIdentityApi&lt;IdentityUser&gt;()<br/>OAuth2 / Bearer Token Issuance"]
-        Controllers["REST API Controllers<br/>Prospect | Interest | Customer | CreditCard<br/>DebitCard | Branch | ATM | Employee"]
-        Swagger["Swagger / OpenAPI 3.0<br/>SecurityRequirementsOperationFilter"]
+    subgraph CoreBusiness["2. Core Banking Business Rules & Risk Engine"]
+        RiskModel["15-Factor Credit Classification<br/>Income, Debt Ratio, Credit Score,<br/>Employment Tenure & Default History"]
+        Underwriting["Underwriting Decision Gate<br/>Independent Credit Card & Debit Card Approval"]
+        AccountCore["Account & Card Lifecycle Engine<br/>Current Accounts, Credit Limits, Billing Cycles & PIN Security"]
+        LedgerEngine["Transactional Ledger Engine<br/>Inter-Account Transfers & Security-Code ATM Withdrawals"]
     end
 
-    subgraph DomainDAL["3. Domain & Data Access Layer (MathFinity.BOL & MathFinity.DAL)"]
-        BOL["MathFinity.BOL<br/>12 Validated Domain Entities<br/>DataAnnotations & Range Constraints"]
-        EFContext["EF Core 8 DataContext<br/>IdentityDbContext (AspNetUsers / Roles)"]
-        DapperDAL["MathFinity.DAL (Dapper 2.1.35)<br/>Asynchronous Stored Procedure Executor<br/>DynamicParameters + SqlClient"]
+    subgraph DataGovernance["3. Distributed Database & Audit Infrastructure"]
+        DistributedDB["Distributed Microsoft SQL Server (Docker Network)<br/>12-Entity Normalized Banking Schema & Pre-Compiled Transactional Rules"]
+        Reporting["Executive Portfolio Analytics & Automated Excel Exports"]
     end
 
-    subgraph DatabaseLayer["4. Distributed Database Infrastructure (Docker + WSL2 Network)"]
-        SQLContainer["Dockerized Microsoft SQL Server<br/>3NF Core Banking Schema + Pre-Compiled T-SQL Stored Procedures"]
-    end
-
-    Views -->|"HTTPS JSON + CORS (blazorApp)"| Controllers
-    AuthClient -->|"POST /login, /register"| IdentityAPI
-    IdentityAPI --> EFContext
-    Controllers --> BOL
-    Controllers --> DapperDAL
-    EFContext -->|"EF Core SqlServer Provider"| SQLContainer
-    DapperDAL -->|"CommandType.StoredProcedure"| SQLContainer
+    AdvisorPortal --> RiskModel
+    RiskModel --> Underwriting
+    Underwriting -->|"Approved Prospect Converts to Customer"| AccountCore
+    CustomerPortal --> AccountCore
+    CustomerPortal --> LedgerEngine
+    BranchAdmin --> LedgerEngine
+    AccountCore --> DistributedDB
+    LedgerEngine --> DistributedDB
+    DistributedDB --> Reporting
 ```
-
-### Architectural Breakdown by Project
-
-| Solution Project | Target Framework | Key Dependencies | Primary Architectural Responsibility |
-| :--- | :--- | :--- | :--- |
-| **`MathFinity.WEB`** | `net8.0` (`BlazorWebAssembly`) | `Radzen.Blazor 4.31.2`, `Components.Authorization 8.0.4`, `Newtonsoft.Json` | Client-side Single Page Application (SPA) rendering interactive data grids, navigation sidebars (`MainLayout.razor`), and `[Authorize]`-protected prospect and customer workflows. |
-| **`MathFinity.API`** | `net8.0` (`Sdk.Web`) | `Identity.EntityFrameworkCore 8.0.4`, `Swashbuckle.AspNetCore.Filters 8.0.2`, `ClosedXML 0.102.2` | Stateless REST API hosting 8 banking controllers, ASP.NET Core Identity token endpoints (`MapIdentityApi<IdentityUser>`), CORS policy enforcement, and multi-stage Linux Docker packaging (`EXPOSE 8242`). |
-| **`MathFinity.DAL`** | `net8.0` (`Sdk`) | `Dapper 2.1.35`, `System.Data.SqlClient 4.8.6`, `Extensions.Configuration.Json 8.0.0` | High-performance Data Access Layer managing `SqlConnection` lifecycles (`DALDataConnection`) and executing pre-compiled SQL Server Stored Procedures via `DynamicParameters`. |
-| **`MathFinity.BOL`** | `net8.0` (`Sdk`) | `System.ComponentModel.DataAnnotations` | Pure Business Object Layer defining the 12 core banking entities (`Prospect`, `Interest`, `Customer`, `CurrentAccount`, `CreditCard`, `DebitCard`, `Transaction`, `Transfer`, `WithDrawal`, `Branch`, `Employee`, `ATM`). |
 
 ---
 
-## 3. Credit Prospect Classification & Onboarding Flow
+## 3. Credit Underwriting & Customer Conversion Lifecycle
 
-When a prospective client applies for a credit card, the system validates all 15 feature constraints at the `MathFinity.BOL` model boundary before persisting the vector into SQL Server and routing it for underwriting:
+From an executive governance standpoint, every new credit line follows a fully traceable approval sequence that links the applicant, the evaluating bank advisor, and the resulting financial account:
 
 ```mermaid
 sequenceDiagram
     autonumber
-    actor Advisor as Bank Advisor (Blazor WASM)
-    participant API as ProspectController / InterestController
-    participant DAL as DALProspect / DALInterest (Dapper)
-    participant SQL as SQL Server (Docker Container)
+    actor Applicant as Prospective Client
+    actor Advisor as Bank Credit Advisor
+    participant Underwriting as Credit Risk & Underwriting Engine
+    participant CoreBank as Core Banking Ledger (SQL Server)
 
-    Advisor->>API: POST /api/Prospect (15-Feature Prospect Payload)
-    Note over API: Validate DataAnnotations ([Range], [Required])<br/>age, debt, creditScore, income, yearsEmployed, priorDefault...
-    API->>DAL: DALProspect.InsertPropectAsync(prospect)
-    DAL->>SQL: EXEC [dbo].[ProspectInsert] @age, @gender, ..., @creditScore, @citizen
-    SQL-->>DAL: 1 Row Affected (prospectID generated)
-    DAL-->>API: Return true
-    API-->>Advisor: HTTP 200 OK (Prospect Registered)
+    Applicant->>Advisor: Submits Credit/Debit Application
+    Advisor->>Underwriting: Captures 15 Socioeconomic & Credit Bureau Indicators
+    Note over Underwriting: Evaluates Income, Debt Ratio, Credit Score,<br/>Years Employed, Prior Defaults & Stability Factors
+    Underwriting->>CoreBank: Registers Validated Prospect Profile
+    CoreBank-->>Advisor: Prospect Assigned for Underwriting Review
 
-    Advisor->>API: GET /api/Interest (Evaluate Credit Classification)
-    API->>DAL: DALInterest.GetAllInterestAsync()
-    DAL->>SQL: EXEC [dbo].[InterestGetAll]
-    SQL-->>DAL: Underwriting Records (prospectID, employeeID)
-    DAL-->>API: List<Interest>
+    Advisor->>Underwriting: Records Formal Underwriting Decision (Credit / Debit Approval)
+    Underwriting->>CoreBank: Logs Advisor ID, Timestamp & Approved Product Flags
 
-    Advisor->>DAL: DALInterest.UpdateInterest(interestID, approvedCreditCard, approvedDebitCard)
-    DAL->>SQL: EXEC [dbo].[InterestUpdate] @interestID, @approvedDebitCard, @approvedCreditCard
-    SQL-->>DAL: 1 Row Affected (Customer & CurrentAccount Eligible)
+    alt Application Approved
+        CoreBank->>CoreBank: Converts Prospect (1:1) into Active Bank Customer
+        CoreBank->>CoreBank: Provisions Current Account & Issues Approved Cards
+        CoreBank-->>Applicant: Activates Digital Banking & Payment Instruments
+    else Application Declined
+        CoreBank-->>Applicant: Retains Historical Audit Record Without Account Creation
+    end
 ```
 
-### Validated Credit Classification Feature Vector (`MathFinity.BOL/Prospect.cs`)
+### The 15 Credit Underwriting Indicators
 
-| Feature Name | C# Type | Validation Attributes | Risk Classification Role |
-| :--- | :--- | :--- | :--- |
-| **`age`** | `float` | `[Required]`, `[Range(0, 100)]` | Applicant age in years; captures lifecycle earning stability. |
-| **`gender`** | `int` | `[Required]`, `[Range(0, 1)]` | Binary encoded demographic attribute (`0` or `1`). |
-| **`married`** | `int` | `[Required]`, `[Range(0, 1)]` | Marital status indicator affecting household risk pooling. |
-| **`driversLicense`** | `int` | `[Required]`, `[Range(0, 1)]` | Verified government-issued driver identification flag. |
-| **`employed`** | `int` | `[Required]`, `[Range(0, 1)]` | Active employment status at time of application. |
-| **`yearsEmployed`** | `float` | `[Required]`, `[Range(0, 100)]` | Continuous tenure in current employment role. |
-| **`industry`** | `string` | `[Required]` | Economic sector of employment (categorical feature). |
-| **`income`** | `float` | `[Required]` | Verified liquid income supporting debt service coverage. |
-| **`debt`** | `float` | `[Required]`, `[Range(0, 1)]` | Normalized debt-to-income obligation ratio (`0.0` to `1.0`). |
-| **`creditScore`** | `float` | `[Required]` | External credit bureau quantitative score. |
-| **`priorDefault`** | `int` | `[Required]`, `[Range(0, 1)]` | Critical binary flag indicating any historical credit default. |
-| **`bankCustomer`** | `int` | `[Required]`, `[Range(0, 1)]` | Indicates whether the applicant already holds an account with the bank. |
-| **`citizen`** | `string` | `[Required]` | Citizenship / residency classification (`ByBirth`, `Temporary`, etc.). |
-| **`Ethnicity`** | `string` | `[Required]` | Demographic categorization from the benchmark credit dataset. |
-| **`zipCode`** | `string` | `[Required]` | Geographic postal zone of the applicant's residence. |
+| Evaluation Dimension | Business Indicators Evaluated | Risk Governance Objective |
+| :--- | :--- | :--- |
+| **Repayment History & Bureau Score** | External Credit Score, Prior Default History, Existing Bank Customer Status | Identifies historical delinquency behavior and rewards established customers with verified payment track records. |
+| **Debt Capacity & Cash Flow** | Gross Income, Current Debt-to-Income Ratio | Measures disposable liquidity and prevents over-leveraging the applicant beyond sustainable debt service thresholds. |
+| **Employment Stability** | Employment Status, Continuous Years Employed, Industry Sector | Evaluates income continuity and accounts for macroeconomic volatility across different employment sectors. |
+| **Demographic & Identity Verification** | Age, Marital Status, Citizenship/Residency, Verified Driver License, Ethnicity, Postal Code | Completes Know-Your-Customer (KYC) verification and actuarial risk segmentation. |
 
 ---
 
-## 4. Relational Database Schema & Disjoint Transaction Model
+## 4. Enterprise Data Model & Financial Auditability
 
-The core banking database was designed from the ground up in **Third Normal Form (3NF)** and deployed across Dockerized SQL Server instances over a WSL2 virtual network. Below is the complete Entity-Relationship (ER) diagram modeling the 12 domain entities and their cardinality constraints:
+To guarantee **zero data redundancy** and **strict referential integrity**, the database is structured into 12 normalized business entities deployed across containerized SQL Server instances connected over an isolated virtual network:
 
-![MathFinity Entity-Relationship Diagram](/images/database/project_2.png)
+![Core Banking Entity-Relationship Model](/images/database/project_2.png)
 
-### Key Relational Design Patterns
+### Executive Governance Built into the Data Model
 
-1. **Identity Decoupling (`User` vs. `Customer` vs. `Prospect`)**:
-   - Authentication credentials, password hashes, security stamps, and 2FA flags reside in `AspNetUsers` (`DataContext : IdentityDbContext`, migration `20240509171444_aspnetIdentity`).
-   - Unapproved applicants remain isolated in `Prospect` until an `Employee` completes an `Interest` underwriting record, preventing unverified users from polluting `Customer` or `CurrentAccount` tables.
-2. **Disjoint `1:1` Transaction Subtyping (`Transaction` -> `Transfer` | `WithDrawal`)**:
-   - Every financial movement creates an atomic parent row in `Transaction` (`transactionNumber`, `amount`, `approved`, `date`, `accountNumber`).
-   - Depending on the operation type, the transaction branches into either `Transfer` (`transferNumber`, `issuingAccount`, `destinatioAccount`) or `WithDrawal` (`withDrawalNumber`, `securityCode`), preserving strict foreign-key referential integrity without nullable subtype columns.
-3. **Physical Branch Capacity Constraints (`Branch` -> `ATM` & `Employee`)**:
-   - A `Branch` (`branchID`, `name`, `address`) is linked `(1:1)-(0:3)` to `ATM` machines (`ATMID`, `cashInBox`) and `(1:1)-(0:N)` to `Employee` records, ensuring every ATM cash withdrawal (`WithDrawal`) is traceable to a physical vault and branch location.
+| Business Domain | Core Entities | Operational & Financial Controls Enforced |
+| :--- | :--- | :--- |
+| **Origination & KYC** | `Prospect`, `Interest`, `Customer`, `User` | Unapproved applicants cannot hold accounts or execute transactions. Every active `Customer` traces back `1:1` to a signed `Interest` underwriting approval and an authenticated digital `User` identity. |
+| **Accounts & Cards** | `CurrentAccount`, `CreditCard`, `DebitCard` | A `Customer` owns a `CurrentAccount` (`1:1`), which governs up to one revolving `CreditCard` and one liquid `DebitCard`, centralizing account auditing while keeping credit limits and checking balances segregated. |
+| **Transactional Ledger** | `Transaction`, `Transfer`, `WithDrawal` | Every financial operation generates an immutable parent `Transaction` record (`amount`, `date`, `approved`) and branches exclusively into either an electronic `Transfer` or a physical `WithDrawal`. |
+| **Physical Network** | `Branch`, `Employee`, `ATM` | Every `Employee` and `ATM` is bound to a physical `Branch`. Each `Branch` is capped at a maximum of `3` `ATM` units, and every cash `WithDrawal` is reconciled against the specific ATM's cash vault (`cashInBox`). |
 
 ---
 
-## 5. Dapper Stored-Procedure DAL & Defensive Security Architecture
+## 5. Security, Compliance & Executive Reporting Capabilities
 
-To maximize throughput and eliminate ORM query compilation overhead on transactional banking tables, `MathFinity.DAL` executes **100% pre-compiled SQL Server Stored Procedures** using `Dapper` (`2.1.35`) and `System.Data.SqlClient`.
+Beyond core banking transactions, the platform incorporates three architectural safeguards designed for enterprise operations:
 
-### 5.1 Complete Stored Procedure Inventory (`MathFinity.DAL`)
-
-| DAL Class | C# Asynchronous Method | Target SQL Server Stored Procedure | Parameters & Direction |
-| :--- | :--- | :--- | :--- |
-| **`DALProspect`** | `GetAllProspectAsync()`<br/>`GetByIdProspectAsync(int id)`<br/>`InsertPropectAsync(Prospect)` | `[dbo].[ProspectGetAll]`<br/>`[dbo].[ProspectGetById]`<br/>`[dbo].[ProspectInsert]` | None<br/>`@prospectID`<br/>14 input parameters (`@age`..`@citizen`) |
-| **`DALInterest`** | `GetAllInterestAsync()`<br/>`UpdateInterest(Interest)`<br/>`InterestInsertAsync()` | `[dbo].[InterestGetAll]`<br/>`[dbo].[InterestUpdate]`<br/>`[dbo].[InterestInsert]` | None<br/>`@interestID`, `@approvedDebitCard`, `@approvedCreditCard`<br/>None |
-| **`DALCustomer`** | `CustomerGetAllAsync()`<br/>`CustomerGetByIdAsync(string id)`<br/>`EditCustomerAsync(Customer)` | `[dbo].[CustomerGetAll]`<br/>`[dbo].[CustomerGetById]`<br/>`[dbo].[CustomerEdit]` | None<br/>`@customerID`<br/>`@customerID`, `@phone`, `@address` |
-| **`DALCurrentAccount`** | `CurrentAccountGetAllAsync()`<br/>`CurrentAccountGetByIdAsync(string)` | `[dbo].[CurrentAccountGetAll]`<br/>`[dbo].[CurrentAccountGetById]` | None<br/>`@accountNumber` |
-| **`DALCreditCard`** | `CreditCardGetAllAsync()`<br/>`CreditCardGetByIdAsync(string)` | `[dbo].[CreditCardGetAll]`<br/>`[dbo].[CreditCardGetById]` | None<br/>`@cardNumber` |
-| **`DALDebitCard`** | `DebitCardGetAllAsync()`<br/>`DebitCardGetByIdAsync(string)`<br/>`DebitCardLogInAsync(DebitCard)` | `[dbo].[DebitCardGetAll]`<br/>`[dbo].[DebitCardGetById]`<br/>`[dbo].[DebitCardLogIn]` | None<br/>`@cardNumber`<br/>`@cardNumber`, `@NIP` |
-| **`DALTransaction`** | `TransactionGetAllAsync()`<br/>`TransactionGetById(int id)` | `[dbo].[TransferGetAll]`<br/>`[dbo].[TransactionGetById]` | None<br/>`@transactionNumber` |
-| **`DALBranch`** | `GetAllBranchAsync()`<br/>`GetBranchByIdAsync(int id)`<br/>`InsertBranchAsync(Branch)` | `[dbo].[BranchGetAll]`<br/>`[dbo].[BranchGetById]`<br/>`[dbo].[BranchInsert]` | None<br/>`@branchID`<br/>`@address`, `@name` |
-| **`DALATM`** | `GetAllATM()`<br/>`GetATMById(int id)`<br/>`InsertATMAsync(ATM)` | `[dbo].[ATMGetAll]`<br/>`[dbo].[ATMGetById]`<br/>`[dbo].[ATMInsert]` | None<br/>`@ATMID`<br/>`@branchID`, `@cashInBox` |
-| **`DALEmployee`** | `GetAllEmployessAsync()`<br/>`GetEmployeeByIdAsync(int id)`<br/>`InsertEmployeeAsync(Employee)`<br/>`UpdateEmployee(Employee)` | `[dbo].[EmployeeGetAll]`<br/>`[dbo].[EmployeeGetById]`<br/>`[dbo].[EmployeeInsert]`<br/>`[dbo].[EmployeeUpdate]` | None<br/>`@employeeID`<br/>7 employee attributes<br/>8 employee attributes |
-
-### 5.2 SQL Injection Benchmarking (`DebitCardLogInAsync` vs. `DebitCardLogInAsyncTest`)
-To demonstrate why financial applications must enforce parameterized stored procedures at the data layer, `DALDebitCard.cs` and `DebitCardController.cs` implement a side-by-side security comparison endpoint:
-- **Production Hardened Endpoint (`GET /api/DebitCard/{cardNumber}/{NIP}`)**: Invokes `DALDebitCard.DebitCardLogInAsync`, binding `@cardNumber` and `@NIP` as strongly-typed `DynamicParameters` passed to `[dbo].[DebitCardLogIn]` (`CommandType.StoredProcedure`). Payloads containing T-SQL metacharacters are treated strictly as literal byte buffers.
-- **Vulnerability Benchmark Endpoint (`GET /api/DebitCard/test/{cardNumber}/{NIP}`)**: Invokes `DALDebitCard.DebitCardLogInAsyncTest` during security testing Labs to demonstrate how unparameterized string interpolation (`SqlCommand`) exposes authentication queries to tautology injection, validating the necessity of the Dapper Stored Procedure architecture.
-
-### 5.3 Extensibility: Stored-Procedure Output Aggregation & In-Memory OpenXML Reporting
-The 4-layer `MathFinity` foundation (`Blazor WASM + RadzenDataGrid` -> `ASP.NET Core 8 Web API` -> `Dapper DAL` -> `Dockerized SQL Server`) was also extended to power enterprise B2B campaign and shipment tracking modules (`ProyectoController`, `EnviosController`, `DALProyecto`, `DALEnvios`):
-- **Server-Side KPI Calculation via SQL `OUTPUT` Parameters**: Rather than transferring thousands of rows to calculate completion percentages on the client, `DALEnvios.ObtenerPorcentajeEnvios` binds `parameters.Add("@porcentaje", dbType: DbType.Single, direction: ParameterDirection.Output)` and executes `[dbo].[ProyectoGetStatistics]`, binding the resulting scalar directly to a `<RadzenProgressBar>` component.
-- **Zero-Disk In-Memory Excel Generation (`ClosedXML`)**: The `/api/Envios/Excel` endpoint populates an in-memory `System.Data.DataTable`, compiles an OpenXML `.xlsx` workbook via `XLWorkbook` into a `MemoryStream`, and streams the binary `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet` payload directly to the browser without touching container disk storage.
+1. **Database-Enforced Transactional Integrity**:
+   - External applications cannot execute arbitrary or ad-hoc queries against the banking tables. All financial reads, customer updates, and card authorizations are processed exclusively through pre-compiled database procedures, protecting the ledger against unauthorized manipulation and SQL injection attacks.
+2. **Distributed Containerized Deployment**:
+   - The relational database engine and the application services run in isolated Linux Docker containers linked across a private virtual network, allowing the institution to scale storage, enforce network-level firewalls, and replicate environments consistently across development and production.
+3. **Real-Time KPI Aggregation & Executive Spreadsheet Exports**:
+   - Management dashboards compute portfolio progress metrics directly inside the database engine and allow executives to export filtered operational records into formatted Excel workbooks generated entirely in memory for immediate financial auditing.
 
 ---
 
