@@ -1,6 +1,8 @@
 ## Portfolio
 
-<hr class="post-divider" style="border: 0; height: 2px; background: linear-gradient(to right, #267CB9 0%, #cbd5e1 35%, #e2e8f0 100%); margin: 18px 0 28px 0;" />
+[About Me & Full Technical Profile](/pages/about_me.md)
+
+<hr class="post-divider" style="border: 0; height: 2px; background: linear-gradient(to right, #267CB9 0%, #cbd5e1 35%, #e2e8f0 100%); margin: 14px 0 28px 0;" />
 
 <span class="post-date-badge" style="display: inline-block; background: #f0f7fc; color: #267CB9; border: 1px solid #bcd6eb; border-radius: 4px; padding: 2px 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 6px;">Published: September 2026</span>
 
