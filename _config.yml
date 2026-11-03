@@ -1,12 +1,37 @@
 title: Oscar Lizarraga # your name (or website title) here
 logo: "/images/profilePhoto.png?raw=true" # your photo (or logo) here
 description: > # your text below (remove <br> elements if you don't need line breaks)
-  ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
-  Developer .NET freelancer with 4 years of experience, specialized in providing automation solutions and data management 
-  for custom systems to small businesses. My focus is on optimizing processes to reduce operational times, minimize costs, and increase efficiency.
-  <br><br>
-  <br><br>
-  <a href="https://www.linkedin.com/in/oscar-lizarraga-pelayo-8051a1215/">View My LinkedIn Profile</a> 
+  <b>Systems & Cloud Architect | Polyglot Backend Engineer</b><br>
+  Specialized in designing high-throughput distributed systems, event-driven microservices, and enterprise logistics platforms. Proven track record building end-to-end mission-critical infrastructure combining .NET 8, Golang, Python, and Azure: from metaheuristic fleet routing engines (VROOM / OSRM) and real-time telemetry streaming (Cosmos DB Change Streams), to offline-first mobile logistics (MAUI / CameraX) and self-healing ETL pipelines with Applied AI. Focused on algorithmic efficiency, zero-downtime resilience, and enterprise scalability.<br><br>
+
+  <b>Languages & Frameworks:</b><br>
+  • C# (.NET 8, ASP.NET Core Web API, .NET MAUI, Blazor Server/WASM, Dapper, EF Core)<br>
+  • Python (FastAPI, Flask, Playwright Headless, Pandas, NumPy)<br>
+  • Go (Golang high-concurrency daemons, pgx/v5)<br>
+  • Android (AndroidX CameraX engine, Google ML Kit OCR, SQLite Offline-First)<br>
+  • JavaScript (ES6+), SQL, Bash<br><br>
+
+  <b>Geospatial, Routing & Optimization:</b><br>
+  • VROOM (Metaheuristic CVRPTW Fleet Optimization)<br>
+  • OSRM (NxM distance matrices & street-level routing engines)<br>
+  • Google Maps Platform (Places API, Geocoding API)<br>
+  • TileServer GL & MapLibre WebGL (Vector tiles at 60 FPS)<br>
+  • Leaflet (MarkerCluster, Heatmaps, Routing Machine, PolylineDecorator)<br><br>
+
+  <b>Cloud, DevOps & Databases:</b><br>
+  • Microsoft Azure (Blob Storage SAS streaming, Cosmos DB Change Streams, Service Bus, Bicep IaC, Functions)<br>
+  • PostgreSQL (JSONB, spatial indexing, stored functions), MongoDB, SQLite<br>
+  • Docker, Docker Compose (Blue-Green deployments), Nginx (Reverse Proxy & Load Balancer), OAuth2-Proxy<br>
+  • Observability: Prometheus, Grafana, Loki, Promtail, cAdvisor, Node Exporter<br><br>
+
+  <b>APIs & Enterprise Integrations:</b><br>
+  • IoT & Fleet Telematics: Samsara Fleet API (real-time vehicle GPS & telemetry)<br>
+  • Microsoft Graph API (SharePoint / OneDrive / Entra ID OAuth2)<br>
+  • Azure AI Foundry / OpenAI (Self-healing ETL with schema drift remediation)<br>
+  • Courier Tracking (DHL), Firebase Cloud Messaging (FCM silent sync)<br>
+  • SAT CFDI 4.0 / Complemento Carta Porte digital cryptographic stamping & ePOD<br><br>
+
+  <a href="https://www.linkedin.com/in/oscar-lizarraga-pelayo-8051a1215/">View My LinkedIn Profile</a>
   
 remote_theme: pages-themes/minimal@v0.2.0
 plugins:
