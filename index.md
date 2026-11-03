@@ -50,12 +50,10 @@ An autonomous, dual-speed logistics ingestion microservice in Go (Golang) and Po
 
 
 ---
-[Delivery APP | .NET MAUI blazor hybrid, Web Api, MongoDB, CosmoDB](/pages/database/banking_application.md)  
-We designed a web app for a bank, using distribuited data base with SQL server contained  
-with docker and a network link between both of them. A classification model to aprove  
-a credit car for prospect.  
+[Delivery APP | .NET MAUI blazor hybrid, Web Api, MongoDB, CosmoDB](/pages/systems/delivery_mobile_app.md)  
+An offline-first last-mile delivery platform (Rigel v2.1) built with .NET 8 MAUI Blazor Hybrid (Profiled AOT), ASP.NET Core 8 Web API (v1–v3), SQLite (v8), Azure Cosmos DB (MongoDB API), and Azure Blob Storage. Solves end-to-end field execution across unstable cellular networks: pre-flight dock route validation and missing-parcel alerts, 2-stage itinerary tracking (Warehouse Load/Pickup vs. Delivery), mandatory 4-part ePOD capture (ML Kit Acuse document scan, Material photo, Facade photo, and touch Signature) via a custom 1600x1200 AndroidX CameraX engine, single-flight GPS pre-warming, structured incident reporting, silent FCM route delta sync, and direct-to-cloud SAS BlockBlob streaming with SHA-256 idempotency.  
 
-<img src="images/database/project_2.png?raw=true"/>
+<img src="images/systems/delivery.png?raw=true"/>
 --- 
 
 
