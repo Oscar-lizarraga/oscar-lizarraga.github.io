@@ -89,14 +89,14 @@ An enterprise retail banking and credit risk underwriting platform built over a 
 
 <hr class="post-divider" style="border: 0; height: 2px; background: linear-gradient(to right, #267CB9 0%, #cbd5e1 35%, #e2e8f0 100%); margin: 34px 0 30px 0;" />
 
-<span class="post-date-badge" style="display: inline-block; background: #f0f7fc; color: #267CB9; border: 1px solid #bcd6eb; border-radius: 4px; padding: 2px 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 6px;">Published: November 2021</span>
+<span class="post-date-badge" style="display: inline-block; background: #f0f7fc; color: #267CB9; border: 1px solid #bcd6eb; border-radius: 4px; padding: 2px 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 6px;">Published: November 2020</span>
 
 ### <span class="blue-title" style="color: #267CB9; font-weight: 400;">Multi-Branch Retail Point of Sale (POS), Offline Continuity & Inventory ERP</span>
 
 [Multi-Branch Retail Point of Sale (POS), Offline Storefront & Inventory ERP Platform](/pages/systems/point_of_sale_erp.md)  
 A 4-tier retail Point of Sale (POS) and inventory management ERP built with .NET and Microsoft SQL Server, engineered for uninterrupted multi-store operations. Solves critical physical retail challenges: zero-downtime offline checkout with automatic background database synchronization upon network recovery, dual-presentation SKU scanning (unit barcodes and fractional bulk weight), automated time-window and volume promotional discounts, 6 audited inventory movement workflows (Retail Sales, 2-Stage Supplier Purchases, Two-Phase Inter-Branch Transfers, Shrinkage/Spoilage, Physical Audits, and Returns), 6-tier Role-Based Access Control (RBAC), per-branch maximum cash-in-drawer security limits, and direct hardware integration with OPOS electronic cash drawers and thermal receipt printers.  
 
-<img class="project-cover-img" src="images/systems/pos_cover.png?raw=true"/>
+<img class="project-cover-img" src="images/systems/punto de venta.png?raw=true"/>
 
 <hr class="post-divider" style="border: 0; height: 2px; background: linear-gradient(to right, #267CB9 0%, #cbd5e1 35%, #e2e8f0 100%); margin: 34px 0 30px 0;" />
 

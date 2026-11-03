@@ -67,7 +67,7 @@ title: "Multi-Branch Retail Point of Sale (POS), Offline Storefront & Inventory 
   <div class="project-meta-grid">
     <div class="project-meta-item">
       <span class="project-meta-label">Published</span>
-      <span class="project-meta-value">November 2021</span>
+      <span class="project-meta-value">November 2020</span>
     </div>
     <div class="project-meta-item">
       <span class="project-meta-label">Role</span>
