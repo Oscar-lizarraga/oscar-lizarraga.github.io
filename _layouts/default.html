@@ -19,8 +19,45 @@
    <style>
       /* Mejoras de diseño compatibles con GitHub Pages (tema minimal) */
       @media screen and (min-width: 961px) {
-         .wrapper { width: 980px; }
-         section { width: 630px; }
+         .wrapper { width: 1080px; }
+         header {
+            width: 330px;
+            top: 24px;
+            max-height: calc(100vh - 36px);
+            overflow-y: auto;
+            padding-right: 12px;
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 transparent;
+         }
+         header::-webkit-scrollbar {
+            width: 5px;
+         }
+         header::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 4px;
+         }
+         section { width: 690px; }
+         footer {
+            position: static;
+            float: right;
+            width: 690px;
+            clear: both;
+            padding-top: 16px;
+         }
+      }
+      header h1 {
+         font-size: 22px;
+         margin: 0 0 8px 0;
+      }
+      header img {
+         max-width: 140px !important;
+         border-radius: 8px;
+         margin: 0 0 10px 0;
+      }
+      header p {
+         font-size: 12px;
+         line-height: 1.38;
+         margin: 0 0 8px 0;
       }
       .blue-title {
          color: #267CB9 !important;
