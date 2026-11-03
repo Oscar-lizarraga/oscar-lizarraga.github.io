@@ -54,29 +54,13 @@ An autonomous, dual-speed logistics ingestion microservice in Go (Golang) and Po
 An offline-first last-mile delivery platform (Rigel v2.1) built with .NET 8 MAUI Blazor Hybrid (Profiled AOT), ASP.NET Core 8 Web API (v1–v3), SQLite (v8), Azure Cosmos DB (MongoDB API), and Azure Blob Storage. Solves end-to-end field execution across unstable cellular networks: pre-flight dock route validation and missing-parcel alerts, 2-stage itinerary tracking (Warehouse Load/Pickup vs. Delivery), mandatory 4-part ePOD capture (ML Kit Acuse document scan, Material photo, Facade photo, and touch Signature) via a custom 1600x1200 AndroidX CameraX engine, single-flight GPS pre-warming, structured incident reporting, silent FCM route delta sync, and direct-to-cloud SAS BlockBlob streaming with SHA-256 idempotency.  
 
 <img src="images/systems/delivery.png?raw=true"/>
---- 
-
-
 ---
-[Banking Application ](/pages/database/banking_application.md)  
-We designed a web app for a bank, using distribuited data base with SQL server contained  
-with docker and a network link between both of them. A classification model to aprove  
-a credit car for prospect.  
+
+[Banking Application | .NET 8 Blazor WASM, Web API, Dapper & Distributed SQL Server](/pages/database/banking_application.md)  
+A 4-layer core banking and credit risk underwriting platform (MathFinity) built with .NET 8 Blazor WebAssembly (Radzen UI), ASP.NET Core 8 Web API (EF Core Identity OAuth2/Bearer), Dapper 2.1, and a distributed Microsoft SQL Server database containerized with Docker over a WSL2 virtual network. Solves end-to-end retail banking operations across a 12-entity 3NF relational schema: automated credit card prospect classification across 15 socioeconomic and credit-bureau features, advisor underwriting and 1:1 prospect-to-customer conversion, dual-card lifecycle management (revolving Credit Cards and PIN-authenticated Debit Cards), branch and ATM cash-vault administration, and a disjoint transactional ledger separating inter-account wire transfers from security-code ATM cash withdrawals via 100% pre-compiled T-SQL Stored Procedures.  
 
 <img src="images/database/project_2.png?raw=true"/>
---- 
-
-
-
 ---
-[Banking Application ](/pages/tools/html_to_pdf.md)  
-We designed a web app for a bank, using distribuited data base with SQL server contained  
-with docker and a network link between both of them. A classification model to aprove  
-a credit car for prospect.  
-
-<img src="images/database/project_2.png?raw=true"/>
---- 
-
 
 ### Numeric Methods with Ti-89 Titanium
 
